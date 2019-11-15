@@ -68,6 +68,17 @@ public class RubiksCubeController : MonoBehaviour
             FaceTouchStart(faces[5]);
         else if (Input.GetKeyUp(KeyCode.Keypad5))
             FaceTouchEnd(faces[5]);
+
+        if (!selectedFace)
+        {
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                RotateFace(selectedFace, selectedPieces, -15);
+            else if (Input.GetKeyUp(KeyCode.RightArrow))
+                RotateFace(selectedFace, selectedPieces, 15);
+        }
     }
 
     // Handler for the moment when a face is touched
@@ -137,5 +148,23 @@ public class RubiksCubeController : MonoBehaviour
     void UnhighlightPiece(RubiksCubePiece piece)
     {
         piece.BlockRenderer.material = normalMat;
+    }
+
+    void RotateFace(RubiksCubeFace rotFace, RubiksCubePiece[] rotPieces, float degrees)
+    {
+        List<Transform> parents = new List<Transform>();
+
+        foreach (RubiksCubePiece piece in rotPieces)
+        {
+            parents.Add(piece.transform.parent);
+            piece.transform.SetParent(rotFace.transform);
+        }
+
+        rotFace.transform.RotateAround(transform.position, rotFace.transform.forward, degrees);
+
+        for (int i = 0; i < parents.Count; i++)
+        {
+            rotPieces[i].transform.SetParent(parents[i]);
+        }
     }
 }

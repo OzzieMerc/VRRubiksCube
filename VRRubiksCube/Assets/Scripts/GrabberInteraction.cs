@@ -23,11 +23,11 @@ public class GrabberInteraction : MonoBehaviour
     void OnTriggerEnter(Collider otherCollider)
     {
         //if (otherCollider.GetComponent<Interactor>())
-        cubeController.enabled = true;
+        //cubeController.enabled = true;
     }
 
     void OnTriggerExit(Collider otherCollider)
     {
-        cubeController.enabled = false;
+        //cubeController.enabled = false;
     }
 }
