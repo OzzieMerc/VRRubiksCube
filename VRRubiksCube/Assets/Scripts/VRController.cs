@@ -20,14 +20,18 @@ public class VRController : MonoBehaviour
     bool triggerPulled;
     bool gripPulled;
     Vector2 thumbstickAxis;
+    Vector3 linearVelocity;
+    Vector3 angularVelocity;
 
     public ControllerHand Hand { get => hand; }
     public bool TriggerPulled { get => triggerPulled; }
     public bool GripPulled{ get => gripPulled; }
     public Vector2 ThumbstickAxis { get => thumbstickAxis; }
+    public Vector3 LinearVelocity { get => linearVelocity; }
+    public Vector3 AngularVelocity { get => angularVelocity; }
 
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +54,9 @@ public class VRController : MonoBehaviour
             float fval;
             Vector2 v2val;
             Vector3 v3val;
+            Quaternion qval;
+            float invertedTime = 1 / Time.deltaTime;
+            Vector3 invertedTimeVec = new Vector3(invertedTime, invertedTime, invertedTime);
 
             // Update state of the trigger button
             if (device.TryGetFeatureValue(CommonUsages.trigger, out fval))
@@ -83,7 +90,17 @@ public class VRController : MonoBehaviour
 
             // Set the hand position to the device position
             if (device.TryGetFeatureValue(CommonUsages.devicePosition, out v3val))
+            {
+                linearVelocity = (v3val - transform.localPosition) * invertedTime;
                 transform.localPosition = v3val;
+            }
+
+            // Set the hand orientation to the device orientation
+            if (device.TryGetFeatureValue(CommonUsages.deviceRotation, out qval))
+            {
+                angularVelocity = (qval * Quaternion.Inverse(transform.localRotation)).eulerAngles * invertedTime;
+                transform.localRotation = qval;
+            }
         }
     }
 
@@ -97,5 +114,7 @@ public class VRController : MonoBehaviour
         triggerPulled = false;
         gripPulled = false;
         thumbstickAxis = Vector2.zero;
+        linearVelocity = Vector3.zero;
+        angularVelocity = Vector3.zero;
     }
 }

@@ -1269,7 +1269,6 @@ GameObject:
   - component: {fileID: 3962789433947076331}
   - component: {fileID: 288879948904509189}
   - component: {fileID: 106713181942727353}
-  - component: {fileID: 2699530770247388809}
   m_Layer: 0
   m_Name: Rubiks Cube
   m_TagString: Untagged
@@ -1370,19 +1369,7 @@ MonoBehaviour:
   - {fileID: 4473017377163469837}
   normalMat: {fileID: 2100000, guid: 6927f8ce9960e4a4bbe0833e27442d2c, type: 2}
   highlightMat: {fileID: 2100000, guid: 30cfe28c74d255b4080d3a0cc70e6f0d, type: 2}
---- !u!114 &2699530770247388809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3962789433947076334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7130e7c384544b24e89aec618988aa3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cubeController: {fileID: 106713181942727353}
+  grabber: {fileID: 6005633900722709078}
 --- !u!1 &3962789433980854873
 GameObject:
   m_ObjectHideFlags: 0
@@ -9267,6 +9254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7612183561632803759}
   - component: {fileID: 2713712003617616789}
+  - component: {fileID: 6005633900722709078}
   m_Layer: 0
   m_Name: Pickup Area
   m_TagString: Untagged
@@ -9301,6 +9289,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.057, y: 0.057, z: 0.057}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6005633900722709078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7606409064496070958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7130e7c384544b24e89aec618988aa3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 3962789433947076331}
 --- !u!1 &8378009468545600248
 GameObject:
   m_ObjectHideFlags: 0
