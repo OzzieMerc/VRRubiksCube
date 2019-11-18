@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -95,6 +96,10 @@ public class RubiksCubeController : MonoBehaviour
                 selectedFace = face;
                 selectedPieces = facePieces;
 
+                // Subscribe to grab events on the face
+                face.onGrabStartEvent += FaceGrabbed;
+                face.onGrabEndEvent += FaceReleased;
+
                 // Highlight them for the player
                 HighlightPieces(facePieces);
             }
@@ -109,10 +114,23 @@ public class RubiksCubeController : MonoBehaviour
             // Unhighlight pieces
             UnhighlightPieces(selectedPieces);
 
+            // Unsubscribe to grab events on the face
+            face.onGrabStartEvent -= FaceGrabbed;
+            face.onGrabEndEvent -= FaceReleased;
+
             // Release focus 
             selectedFace = null;
             selectedPieces = new RubiksCubePiece[0];
         }
+    }
+
+    void FaceGrabbed(RubiksCubeFace face)
+    {
+        RotateFace(selectedFace, selectedPieces, 45);
+    }
+
+    void FaceReleased(RubiksCubeFace face)
+    {
     }
 
     RubiksCubePiece[] GetPiecesWithinArea(BoxCollider area)

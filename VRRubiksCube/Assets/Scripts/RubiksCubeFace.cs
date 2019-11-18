@@ -11,12 +11,24 @@ public class RubiksCubeFace : MonoBehaviour
     public delegate void OnTouchEnd(RubiksCubeFace face);
     public event OnTouchEnd onTouchEndEvent;
 
+    public delegate void OnGrabStart(RubiksCubeFace face);
+    public event OnGrabStart onGrabStartEvent;
+
+    public delegate void OnGrabEnd(RubiksCubeFace face);
+    public event OnGrabEnd onGrabEndEvent;
+
     [SerializeField] BoxCollider area; // A tirgger volume overlapping all the cubes on one side of a Rubik's Cube.
+    bool hasFocus; // True if this face is being touched by a controller.
+    VRController controllerWithFocus;
 
     public BoxCollider Area { get => area; }
+    public bool HasFocus { get => hasFocus; }
 
     void Start()
     {
+        hasFocus = false;
+        controllerWithFocus = null;
+
         if (!area)
         {
             Debug.LogWarning("RubiksCubeFace area not assigned. Attempting to find a compatible BoxCollider");
@@ -29,13 +41,43 @@ public class RubiksCubeFace : MonoBehaviour
 
     void OnTriggerEnter(Collider otherCollider)
     {
-        if (onTouchStartEvent != null)
-            onTouchStartEvent(this);
+        if (otherCollider.TryGetComponent<VRController>(out VRController controller))
+        {
+            controller.onGripPulled += FaceGripped;
+            controller.onTriggerPulled += FaceGripped;
+
+            if (onTouchStartEvent != null)
+                onTouchStartEvent(this);
+        }
     }
 
     void OnTriggerExit(Collider otherCollider)
     {
-        if (onTouchEndEvent != null)
-            onTouchEndEvent(this);
+        if (otherCollider.TryGetComponent<VRController>(out VRController controller))
+        {
+            controller.onGripPulled -= FaceGripped;
+            controller.onTriggerPulled -= FaceGripped;
+
+            if (onTouchEndEvent != null)
+                onTouchEndEvent(this);
+        }
+    }
+
+    void FaceGripped(VRController controller, bool gripping)
+    {
+        if (gripping)
+        {
+            controllerWithFocus = controller;
+
+            if (onGrabStartEvent != null)
+                onGrabStartEvent(this);
+        }
+        else
+        {
+            controllerWithFocus = null;
+
+            if (onGrabEndEvent != null)
+                onGrabEndEvent(this);
+        }
     }
 }
