@@ -44,7 +44,6 @@ public class GrabberInteraction : MonoBehaviour
         if (controllerWithFocus && !Input.GetKey(KeyCode.Q))
         {            
             rb.transform.rotation = controllerWithFocus.transform.rotation * grabRotationOffset;
-           // rb.transform.eulerAngles = controllerWithFocus.transform.TransformDirection(grabRotationOffset);
             rb.transform.position = controllerWithFocus.transform.TransformPoint(grabOffset);
         }
     }
@@ -77,14 +76,15 @@ public class GrabberInteraction : MonoBehaviour
     {
         if (gripped)
         {
+            if (controllerWithFocus)
+                return;
+
             rb.isKinematic = true;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
 
             // world to local space
             grabRotationOffset = Quaternion.Inverse(controller.transform.rotation) * rb.transform.rotation;
-            //grabRotationOffset = controller.transform.InverseTransformDirection(rb.transform.eulerAngles);
-            print(rb.transform.eulerAngles);
             grabOffset = controller.transform.InverseTransformPoint(rb.transform.position);
             controllerWithFocus = controller;
 
@@ -93,6 +93,13 @@ public class GrabberInteraction : MonoBehaviour
         }
         else
         {
+            if (controllerWithFocus != controller)
+            {
+                controller.onGripPulled -= ControllerGrab;
+                controller.onTriggerPulled -= ControllerGrab;
+                return;
+            }
+
             rb.isKinematic = false;
             rb.velocity = controller.LinearVelocity;
             rb.angularVelocity = controller.AngularVelocity;
