@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6061100825806197425}
   - component: {fileID: 2380341741807426124}
   - component: {fileID: 4006100605598468303}
+  - component: {fileID: 5128011556645218920}
   m_Layer: 0
   m_Name: Blue Face
   m_TagString: Untagged
@@ -57,7 +58,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b5604b905822e4e92bc20b6ec29a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeController: {fileID: 106713181942727353}
   area: {fileID: 2380341741807426124}
+--- !u!114 &5128011556645218920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744255404605751260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d577042e3b5277043bb9417b05b2bb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  face: {fileID: 4006100605598468303}
+  prefs: {fileID: 5554845685662186490}
 --- !u!1 &2434830880296815622
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,6 +117,7 @@ GameObject:
   - component: {fileID: 3633284266151879800}
   - component: {fileID: 2095949658604054798}
   - component: {fileID: 2400911097252964732}
+  - component: {fileID: 2728948525171691702}
   m_Layer: 0
   m_Name: Red Face
   m_TagString: Untagged
@@ -147,7 +164,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b5604b905822e4e92bc20b6ec29a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeController: {fileID: 106713181942727353}
   area: {fileID: 2095949658604054798}
+--- !u!114 &2728948525171691702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3513329718473894877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d577042e3b5277043bb9417b05b2bb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  face: {fileID: 2400911097252964732}
+  prefs: {fileID: 5554845685662186490}
 --- !u!1 &3962789433658588067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,6 +1300,7 @@ GameObject:
   - component: {fileID: 3962789433947076333}
   - component: {fileID: 3962789433947076331}
   - component: {fileID: 288879948904509189}
+  - component: {fileID: 5554845685662186490}
   - component: {fileID: 106713181942727353}
   m_Layer: 0
   m_Name: Rubiks Cube
@@ -1321,6 +1354,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.057, y: 0.057, z: 0.057}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5554845685662186490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962789433947076334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0db6d7980f5bc498b34ee65dc5e91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockNormalMat: {fileID: 2100000, guid: 6927f8ce9960e4a4bbe0833e27442d2c, type: 2}
+  cubeBlockTouchMat: {fileID: 2100000, guid: 30cfe28c74d255b4080d3a0cc70e6f0d, type: 2}
+  cubeBlockGrabMat: {fileID: 2100000, guid: 6f97cf42f451d3646baf9e0fdb2acc7a, type: 2}
+  faceBlockTouchMat: {fileID: 2100000, guid: 30cfe28c74d255b4080d3a0cc70e6f0d, type: 2}
+  faceBlockGrabMat: {fileID: 2100000, guid: 89bdc000a165f594a88e35b9c01c0a1b, type: 2}
 --- !u!114 &106713181942727353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1367,8 +1417,6 @@ MonoBehaviour:
   - {fileID: 8266080480109791636}
   - {fileID: 6757502540788148807}
   - {fileID: 4473017377163469837}
-  normalMat: {fileID: 2100000, guid: 6927f8ce9960e4a4bbe0833e27442d2c, type: 2}
-  highlightMat: {fileID: 2100000, guid: 30cfe28c74d255b4080d3a0cc70e6f0d, type: 2}
   grabber: {fileID: 6005633900722709078}
 --- !u!1 &3962789433980854873
 GameObject:
@@ -9081,6 +9129,7 @@ GameObject:
   - component: {fileID: 2848557077489363011}
   - component: {fileID: 9042566748919917267}
   - component: {fileID: 4943576647047584233}
+  - component: {fileID: 5443285942661979367}
   m_Layer: 0
   m_Name: Orange Face
   m_TagString: Untagged
@@ -9127,7 +9176,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b5604b905822e4e92bc20b6ec29a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeController: {fileID: 106713181942727353}
   area: {fileID: 9042566748919917267}
+--- !u!114 &5443285942661979367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364939451085136591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d577042e3b5277043bb9417b05b2bb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  face: {fileID: 4943576647047584233}
+  prefs: {fileID: 5554845685662186490}
 --- !u!1 &6884028351023681393
 GameObject:
   m_ObjectHideFlags: 0
@@ -9139,6 +9203,7 @@ GameObject:
   - component: {fileID: 2570017054191296232}
   - component: {fileID: 5331760271553916301}
   - component: {fileID: 7685713394992035127}
+  - component: {fileID: 8348450953309458436}
   m_Layer: 0
   m_Name: Green Face
   m_TagString: Untagged
@@ -9185,7 +9250,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b5604b905822e4e92bc20b6ec29a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeController: {fileID: 106713181942727353}
   area: {fileID: 5331760271553916301}
+--- !u!114 &8348450953309458436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6884028351023681393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d577042e3b5277043bb9417b05b2bb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  face: {fileID: 7685713394992035127}
+  prefs: {fileID: 5554845685662186490}
 --- !u!1 &7455057914808812878
 GameObject:
   m_ObjectHideFlags: 0
@@ -9197,6 +9277,7 @@ GameObject:
   - component: {fileID: 7345664017914013991}
   - component: {fileID: 7126783093134958153}
   - component: {fileID: 4030735763001070762}
+  - component: {fileID: 8341767436828246310}
   m_Layer: 0
   m_Name: White Face
   m_TagString: Untagged
@@ -9243,7 +9324,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b5604b905822e4e92bc20b6ec29a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeController: {fileID: 106713181942727353}
   area: {fileID: 7126783093134958153}
+--- !u!114 &8341767436828246310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455057914808812878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d577042e3b5277043bb9417b05b2bb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  face: {fileID: 4030735763001070762}
+  prefs: {fileID: 5554845685662186490}
 --- !u!1 &7606409064496070958
 GameObject:
   m_ObjectHideFlags: 0
@@ -9255,6 +9351,7 @@ GameObject:
   - component: {fileID: 7612183561632803759}
   - component: {fileID: 2713712003617616789}
   - component: {fileID: 6005633900722709078}
+  - component: {fileID: 7257595513059178193}
   m_Layer: 0
   m_Name: Pickup Area
   m_TagString: Untagged
@@ -9302,6 +9399,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3962789433947076331}
+--- !u!114 &7257595513059178193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7606409064496070958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 383021aaa9d4ead43af3d574499f5ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeController: {fileID: 106713181942727353}
+  grabber: {fileID: 6005633900722709078}
+  prefs: {fileID: 5554845685662186490}
 --- !u!1 &8378009468545600248
 GameObject:
   m_ObjectHideFlags: 0
@@ -9313,6 +9425,7 @@ GameObject:
   - component: {fileID: 47939899181060813}
   - component: {fileID: 6762366098437511117}
   - component: {fileID: 3249174443444390379}
+  - component: {fileID: 6964639815427239508}
   m_Layer: 0
   m_Name: Yellow Face
   m_TagString: Untagged
@@ -9359,7 +9472,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b5604b905822e4e92bc20b6ec29a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeController: {fileID: 106713181942727353}
   area: {fileID: 6762366098437511117}
+--- !u!114 &6964639815427239508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378009468545600248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d577042e3b5277043bb9417b05b2bb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  face: {fileID: 3249174443444390379}
+  prefs: {fileID: 5554845685662186490}
 --- !u!1 &9090839586278520785
 GameObject:
   m_ObjectHideFlags: 0

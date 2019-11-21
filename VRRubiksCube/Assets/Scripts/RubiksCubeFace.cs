@@ -17,12 +17,14 @@ public class RubiksCubeFace : MonoBehaviour
     public delegate void OnGrabEnd(RubiksCubeFace face);
     public event OnGrabEnd onGrabEndEvent;
 
+    [SerializeField] RubiksCubeController cubeController;
     [SerializeField] BoxCollider area; // A tirgger volume overlapping all the cubes on one side of a Rubik's Cube.
     bool hasFocus; // True if this face is being touched by a controller.
     VRController controllerWithFocus;
 
     public BoxCollider Area { get => area; }
     public bool HasFocus { get => hasFocus; }
+    public RubiksCubePiece[] Pieces { get => GetPiecesWithinArea(area); }
 
     void Start()
     {
@@ -41,6 +43,9 @@ public class RubiksCubeFace : MonoBehaviour
 
     void OnTriggerEnter(Collider otherCollider)
     {
+        if (!enabled)
+            return;
+
         if (otherCollider.TryGetComponent<VRController>(out VRController controller))
         {
             controller.onGripPulled += FaceGripped;
@@ -53,6 +58,9 @@ public class RubiksCubeFace : MonoBehaviour
 
     void OnTriggerExit(Collider otherCollider)
     {
+        if (!enabled)
+            return;
+
         if (otherCollider.TryGetComponent<VRController>(out VRController controller))
         {
             controller.onGripPulled -= FaceGripped;
@@ -65,6 +73,9 @@ public class RubiksCubeFace : MonoBehaviour
 
     void FaceGripped(VRController controller, bool gripping)
     {
+        if (!enabled)
+            return;
+
         if (gripping)
         {
             controllerWithFocus = controller;
@@ -79,5 +90,18 @@ public class RubiksCubeFace : MonoBehaviour
             if (onGrabEndEvent != null)
                 onGrabEndEvent(this);
         }
+    }
+
+    RubiksCubePiece[] GetPiecesWithinArea(BoxCollider area)
+    {
+        List<RubiksCubePiece> overlappingPieces = new List<RubiksCubePiece>();
+
+        foreach (RubiksCubePiece piece in cubeController.Pieces)
+        {
+            if (area.bounds.Intersects(piece.Area.bounds))
+                overlappingPieces.Add(piece);
+        }
+
+        return overlappingPieces.ToArray();
     }
 }

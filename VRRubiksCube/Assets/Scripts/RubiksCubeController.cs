@@ -7,13 +7,12 @@ public class RubiksCubeController : MonoBehaviour
 {
     [SerializeField] RubiksCubeFace[] faces; // Each face of the cube that can be rotated
     [SerializeField] RubiksCubePiece[] pieces; // Each piece that makes up the cube
-    [SerializeField] Material normalMat; // Normal material of pieces when they are not selected
-    [SerializeField] Material highlightMat; // Material to highlight pieces when they are selected
     [SerializeField] GrabberInteraction grabber;
     RubiksCubeFace selectedFace; // Currently selected face;
     RubiksCubePiece[] selectedPieces; // Currently selected pieces
     bool pickedup;
     VRController pickupController;
+    public RubiksCubePiece[] Pieces { get => pieces; }
 
     // Start is called before the first frame update
     void Start()
@@ -41,8 +40,6 @@ public class RubiksCubeController : MonoBehaviour
         }
         else
         {
-            grabber.onTouchStartEvent += OnCubeTouchStart;
-            grabber.onTouchEndEvent += OnCubeTouchExit;
             grabber.onGrabStartEvent += OnCubeGrabbed;
             grabber.onGrabEndEvent += OnCubeReleased;
         }
@@ -105,7 +102,7 @@ public class RubiksCubeController : MonoBehaviour
         if (face != selectedFace)
         {
             // Find pieces within the face area
-            RubiksCubePiece[] facePieces = GetPiecesWithinArea(face.Area);
+            RubiksCubePiece[] facePieces = face.Pieces;
 
             if (facePieces.Length > 0)
             {
@@ -116,9 +113,6 @@ public class RubiksCubeController : MonoBehaviour
                 // Subscribe to grab events on the face
                 face.onGrabStartEvent += OnFaceGrabbed;
                 face.onGrabEndEvent += OnFaceReleased;
-
-                // Highlight them for the player
-                HighlightPieces(facePieces);
             }
         }
     }
@@ -128,9 +122,6 @@ public class RubiksCubeController : MonoBehaviour
     {
         if (face == selectedFace)
         {
-            // Unhighlight pieces
-            UnhighlightPieces(selectedPieces);
-
             // Unsubscribe to grab events on the face
             face.onGrabStartEvent -= OnFaceGrabbed;
             face.onGrabEndEvent -= OnFaceReleased;
@@ -151,41 +142,6 @@ public class RubiksCubeController : MonoBehaviour
 
     }
 
-    RubiksCubePiece[] GetPiecesWithinArea(BoxCollider area)
-    {
-        List<RubiksCubePiece> overlappingPieces = new List<RubiksCubePiece>();
-
-        foreach (RubiksCubePiece piece in pieces)
-        {
-            if (area.bounds.Intersects(piece.Area.bounds))
-                overlappingPieces.Add(piece);
-        }
-
-        return overlappingPieces.ToArray();
-    }
-
-    void HighlightPieces(RubiksCubePiece[] piecesForHighlight)
-    {
-        foreach (RubiksCubePiece piece in piecesForHighlight)
-            HighlightPiece(piece);
-    }
-
-    void UnhighlightPieces(RubiksCubePiece[] piecesForHighlight)
-    {
-        foreach (RubiksCubePiece piece in piecesForHighlight)
-            UnhighlightPiece(piece);
-    }
-
-    void HighlightPiece(RubiksCubePiece piece)
-    {
-        piece.BlockRenderer.material = highlightMat;
-    }
-
-    void UnhighlightPiece(RubiksCubePiece piece)
-    {
-        piece.BlockRenderer.material = normalMat;
-    }
-
     void RotateFace(RubiksCubeFace rotFace, RubiksCubePiece[] rotPieces, float degrees)
     {
         List<Transform> parents = new List<Transform>();
@@ -202,18 +158,6 @@ public class RubiksCubeController : MonoBehaviour
         {
             rotPieces[i].transform.SetParent(parents[i]);
         }
-    }
-
-    void OnCubeTouchStart(VRController controller)
-    {
-        if (!pickupController)
-            HighlightPieces(pieces);
-    }
-
-    void OnCubeTouchExit(VRController controller)
-    {
-        if (!pickupController || pickupController == controller)
-            UnhighlightPieces(pieces);
     }
 
     void OnCubeGrabbed(VRController controller)
