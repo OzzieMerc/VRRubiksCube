@@ -4,6 +4,7 @@
 public class RubiksCubeFaceHighlighter : MonoBehaviour
 {
     [SerializeField] RubiksCubeFace face;
+    [SerializeField] TwistInteraction twister;
     [SerializeField] RubiksCubePreferences prefs;
 
     void Start()
@@ -26,12 +27,12 @@ public class RubiksCubeFaceHighlighter : MonoBehaviour
                 Debug.LogError("Unable to find a compatible RubiksCubePreferences for RubiksCubeFaceHighlighter prefs");
         }
 
-        if (face)
+        if (twister && face)
         {
-            face.onTouchStartEvent += (RubiksCubeFace face) => { ChangeMaterial(face.Pieces, prefs.FaceBlockTouchMat); };
-            face.onTouchEndEvent += (RubiksCubeFace face) => { ChangeMaterial(face.Pieces, prefs.BlockNormalMat); }; ;
-            face.onGrabStartEvent += (RubiksCubeFace face) => { ChangeMaterial(face.Pieces, prefs.FaceBlockGrabMat); }; ;
-            face.onGrabEndEvent += (RubiksCubeFace face) => { ChangeMaterial(face.Pieces, prefs.FaceBlockTouchMat); }; ;
+            twister.onTouchStartEvent += (VRController controller) => { ChangeMaterial(face.Pieces, prefs.FaceBlockTouchMat); };
+            twister.onTouchEndEvent += (VRController controller) => { ChangeMaterial(face.Pieces, prefs.BlockNormalMat); }; ;
+            twister.onGrabStartEvent += (VRController controller) => { ChangeMaterial(face.Pieces, prefs.FaceBlockGrabMat); }; ;
+            twister.onGrabEndEvent += (VRController controller) => { ChangeMaterial(face.Pieces, prefs.FaceBlockTouchMat); }; ;
         }
     }
 

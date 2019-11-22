@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2380341741807426124}
   - component: {fileID: 4006100605598468303}
   - component: {fileID: 5128011556645218920}
+  - component: {fileID: 550154638742077231}
   m_Layer: 0
   m_Name: Blue Face
   m_TagString: Untagged
@@ -73,7 +74,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   face: {fileID: 4006100605598468303}
+  twister: {fileID: 550154638742077231}
   prefs: {fileID: 5554845685662186490}
+--- !u!114 &550154638742077231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744255404605751260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b408327e1e51e384f91f9cbea435bb33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2434830880296815622
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,6 +132,7 @@ GameObject:
   - component: {fileID: 2095949658604054798}
   - component: {fileID: 2400911097252964732}
   - component: {fileID: 2728948525171691702}
+  - component: {fileID: 1209596607299794070}
   m_Layer: 0
   m_Name: Red Face
   m_TagString: Untagged
@@ -179,7 +194,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   face: {fileID: 2400911097252964732}
+  twister: {fileID: 1209596607299794070}
   prefs: {fileID: 5554845685662186490}
+--- !u!114 &1209596607299794070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3513329718473894877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b408327e1e51e384f91f9cbea435bb33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3962789433658588067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,13 +1418,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b80e013a6961934fa3b7ef7644f80d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faces:
-  - {fileID: 4030735763001070762}
-  - {fileID: 4943576647047584233}
-  - {fileID: 7685713394992035127}
-  - {fileID: 3249174443444390379}
-  - {fileID: 2400911097252964732}
-  - {fileID: 4006100605598468303}
+  faceInteractions:
+  - {fileID: 2348026188984648621}
+  - {fileID: 2922272043843123655}
+  - {fileID: 6561973330829783546}
+  - {fileID: 2377768761627151744}
+  - {fileID: 1209596607299794070}
+  - {fileID: 550154638742077231}
   pieces:
   - {fileID: 1033579157476075038}
   - {fileID: 2716934148144022664}
@@ -9210,6 +9238,7 @@ GameObject:
   - component: {fileID: 9042566748919917267}
   - component: {fileID: 4943576647047584233}
   - component: {fileID: 5443285942661979367}
+  - component: {fileID: 2922272043843123655}
   m_Layer: 0
   m_Name: Orange Face
   m_TagString: Untagged
@@ -9271,7 +9300,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   face: {fileID: 4943576647047584233}
+  twister: {fileID: 2922272043843123655}
   prefs: {fileID: 5554845685662186490}
+--- !u!114 &2922272043843123655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364939451085136591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b408327e1e51e384f91f9cbea435bb33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6884028351023681393
 GameObject:
   m_ObjectHideFlags: 0
@@ -9284,6 +9326,7 @@ GameObject:
   - component: {fileID: 5331760271553916301}
   - component: {fileID: 7685713394992035127}
   - component: {fileID: 8348450953309458436}
+  - component: {fileID: 6561973330829783546}
   m_Layer: 0
   m_Name: Green Face
   m_TagString: Untagged
@@ -9345,7 +9388,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   face: {fileID: 7685713394992035127}
+  twister: {fileID: 6561973330829783546}
   prefs: {fileID: 5554845685662186490}
+--- !u!114 &6561973330829783546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6884028351023681393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b408327e1e51e384f91f9cbea435bb33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7455057914808812878
 GameObject:
   m_ObjectHideFlags: 0
@@ -9358,6 +9414,7 @@ GameObject:
   - component: {fileID: 7126783093134958153}
   - component: {fileID: 4030735763001070762}
   - component: {fileID: 8341767436828246310}
+  - component: {fileID: 2348026188984648621}
   m_Layer: 0
   m_Name: White Face
   m_TagString: Untagged
@@ -9419,7 +9476,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   face: {fileID: 4030735763001070762}
+  twister: {fileID: 2348026188984648621}
   prefs: {fileID: 5554845685662186490}
+--- !u!114 &2348026188984648621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455057914808812878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b408327e1e51e384f91f9cbea435bb33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7606409064496070958
 GameObject:
   m_ObjectHideFlags: 0
@@ -9506,6 +9576,7 @@ GameObject:
   - component: {fileID: 6762366098437511117}
   - component: {fileID: 3249174443444390379}
   - component: {fileID: 6964639815427239508}
+  - component: {fileID: 2377768761627151744}
   m_Layer: 0
   m_Name: Yellow Face
   m_TagString: Untagged
@@ -9567,7 +9638,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   face: {fileID: 3249174443444390379}
+  twister: {fileID: 2377768761627151744}
   prefs: {fileID: 5554845685662186490}
+--- !u!114 &2377768761627151744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378009468545600248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b408327e1e51e384f91f9cbea435bb33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9090839586278520785
 GameObject:
   m_ObjectHideFlags: 0
