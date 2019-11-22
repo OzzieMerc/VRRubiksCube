@@ -21,6 +21,7 @@ public class GrabberInteraction : MonoBehaviour
     VRController controllerWithFocus;
     Vector3 grabOffset;
     Quaternion grabRotationOffset;
+    bool grabbed;
 
     // Start is called before the first frame update
     void Start()
@@ -37,12 +38,14 @@ public class GrabberInteraction : MonoBehaviour
         controllerWithFocus = null;
         grabOffset = Vector3.zero;
         grabRotationOffset = Quaternion.identity;
+        grabbed = false;
     }
 
     void Update()
     {
-        if (controllerWithFocus && !Input.GetKey(KeyCode.Q))
-        {            
+        if (grabbed)
+        { 
+            // local to world space
             rb.transform.rotation = controllerWithFocus.transform.rotation * grabRotationOffset;
             rb.transform.position = controllerWithFocus.transform.TransformPoint(grabOffset);
         }
@@ -50,8 +53,13 @@ public class GrabberInteraction : MonoBehaviour
 
     void OnTriggerEnter(Collider otherCollider)
     {
-        if (otherCollider.TryGetComponent<VRController>(out VRController controller))
+        if (HasFocus())
+            return;
+
+        if (otherCollider.TryGetComponent<VRController>(out VRController controller) && !controller.HasFocus())
         {
+            SetFocus(controller);
+
             controller.onGripPulled += ControllerGrab;
             controller.onTriggerPulled += ControllerGrab;
 
@@ -62,8 +70,13 @@ public class GrabberInteraction : MonoBehaviour
 
     void OnTriggerExit(Collider otherCollider)
     {
-        if (otherCollider.TryGetComponent<VRController>(out VRController controller))
+        if (!HasFocus())
+            return;
+
+        if (otherCollider.TryGetComponent<VRController>(out VRController controller) && controller.GetFocus() == transform)
         {
+            ClearFocus();
+
             controller.onGripPulled -= ControllerGrab;
             controller.onTriggerPulled -= ControllerGrab;
 
@@ -76,9 +89,6 @@ public class GrabberInteraction : MonoBehaviour
     {
         if (gripped)
         {
-            if (controllerWithFocus)
-                return;
-
             rb.isKinematic = true;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
@@ -86,27 +96,44 @@ public class GrabberInteraction : MonoBehaviour
             // world to local space
             grabRotationOffset = Quaternion.Inverse(controller.transform.rotation) * rb.transform.rotation;
             grabOffset = controller.transform.InverseTransformPoint(rb.transform.position);
-            controllerWithFocus = controller;
+
+            grabbed = true;
 
             if (onGrabStartEvent != null)
                 onGrabStartEvent(controller);
         }
         else
         {
-            if (controllerWithFocus != controller)
-            {
-                controller.onGripPulled -= ControllerGrab;
-                controller.onTriggerPulled -= ControllerGrab;
-                return;
-            }
-
             rb.isKinematic = false;
             rb.velocity = controller.LinearVelocity;
             rb.angularVelocity = controller.AngularVelocity;
-            controllerWithFocus = null;
+
+            grabbed = false;
 
             if (onGrabEndEvent != null)
                 onGrabEndEvent(controller);
         }
+    }
+
+    bool HasFocus()
+    {
+        return controllerWithFocus != null;
+    }
+
+    VRController GetFocus()
+    {
+        return controllerWithFocus;
+    }
+
+    void SetFocus(VRController controller)
+    {
+        controllerWithFocus = controller;
+        controllerWithFocus.SetFocus(transform);
+    }
+
+    void ClearFocus()
+    {
+        controllerWithFocus.SetFocus(null);
+        controllerWithFocus = null;
     }
 }

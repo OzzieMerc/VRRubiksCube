@@ -19,16 +19,14 @@ public class RubiksCubeFace : MonoBehaviour
 
     [SerializeField] RubiksCubeController cubeController;
     [SerializeField] BoxCollider area; // A tirgger volume overlapping all the cubes on one side of a Rubik's Cube.
-    bool hasFocus; // True if this face is being touched by a controller.
     VRController controllerWithFocus;
 
     public BoxCollider Area { get => area; }
-    public bool HasFocus { get => hasFocus; }
-    public RubiksCubePiece[] Pieces { get => GetPiecesWithinArea(area); }
+    public RubiksCubePiece[] Pieces { get => FindFacePieces(); }
+    bool m_Started = false;
 
     void Start()
     {
-        hasFocus = false;
         controllerWithFocus = null;
 
         if (!area)
@@ -39,15 +37,18 @@ public class RubiksCubeFace : MonoBehaviour
             if (!area)
                 Debug.LogError("Unable to find a compatible BoxCollider for RubiksCubeFace area");
         }
+        m_Started = true;
     }
 
     void OnTriggerEnter(Collider otherCollider)
     {
-        if (!enabled)
+        if (!enabled || HasFocus())
             return;
 
-        if (otherCollider.TryGetComponent<VRController>(out VRController controller))
+        if (otherCollider.TryGetComponent<VRController>(out VRController controller) && !controller.HasFocus())
         {
+            SetFocus(controller);
+
             controller.onGripPulled += FaceGripped;
             controller.onTriggerPulled += FaceGripped;
 
@@ -58,11 +59,13 @@ public class RubiksCubeFace : MonoBehaviour
 
     void OnTriggerExit(Collider otherCollider)
     {
-        if (!enabled)
+        if (!enabled || !HasFocus())
             return;
 
-        if (otherCollider.TryGetComponent<VRController>(out VRController controller))
+        if (otherCollider.TryGetComponent<VRController>(out VRController controller) && controller.GetFocus() == transform)
         {
+            ClearFocus();
+
             controller.onGripPulled -= FaceGripped;
             controller.onTriggerPulled -= FaceGripped;
 
@@ -78,30 +81,53 @@ public class RubiksCubeFace : MonoBehaviour
 
         if (gripping)
         {
-            controllerWithFocus = controller;
-
             if (onGrabStartEvent != null)
                 onGrabStartEvent(this);
         }
         else
         {
-            controllerWithFocus = null;
-
             if (onGrabEndEvent != null)
                 onGrabEndEvent(this);
         }
     }
 
-    RubiksCubePiece[] GetPiecesWithinArea(BoxCollider area)
+    RubiksCubePiece[] FindFacePieces()
     {
         List<RubiksCubePiece> overlappingPieces = new List<RubiksCubePiece>();
+        Vector3 faceNormal = GetNormal();
 
         foreach (RubiksCubePiece piece in cubeController.Pieces)
-        {
-            if (area.bounds.Intersects(piece.Area.bounds))
+            if (Vector3.Dot(faceNormal, piece.GetNormal()) > 0.4f)
                 overlappingPieces.Add(piece);
-        }
 
+        print(overlappingPieces.Count);
         return overlappingPieces.ToArray();
+    }
+
+    public Vector3 GetNormal()
+    {
+        return transform.forward;
+    }
+
+    bool HasFocus()
+    {
+        return controllerWithFocus != null;
+    }
+
+    VRController GetFocus()
+    {
+        return controllerWithFocus;
+    }
+
+    void SetFocus(VRController controller)
+    {
+        controllerWithFocus = controller;
+        controllerWithFocus.SetFocus(transform);
+    }
+
+    void ClearFocus()
+    {
+        controllerWithFocus.SetFocus(null);
+        controllerWithFocus = null;
     }
 }

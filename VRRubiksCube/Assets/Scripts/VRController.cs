@@ -22,6 +22,7 @@ public class VRController : MonoBehaviour
     Vector2 thumbstickAxis;
     Vector3 linearVelocity;
     Vector3 angularVelocity;
+    Transform focus;
 
     public ControllerHand Hand { get => hand; }
     public bool TriggerPulled { get => triggerPulled; }
@@ -29,10 +30,7 @@ public class VRController : MonoBehaviour
     public Vector2 ThumbstickAxis { get => thumbstickAxis; }
     public Vector3 LinearVelocity { get => linearVelocity; }
     public Vector3 AngularVelocity { get => angularVelocity; }
-
-
-
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -116,5 +114,25 @@ public class VRController : MonoBehaviour
         thumbstickAxis = Vector2.zero;
         linearVelocity = Vector3.zero;
         angularVelocity = Vector3.zero;
+    }
+
+    public bool HasFocus()
+    {
+        return focus != null;
+    }
+
+    public Transform GetFocus()
+    {
+        return focus;
+    }
+
+    public void SetFocus(Transform focusObj)
+    {
+        focus = focusObj;
+    }
+
+    public void ClearFocus()
+    {
+        focus = null;
     }
 }

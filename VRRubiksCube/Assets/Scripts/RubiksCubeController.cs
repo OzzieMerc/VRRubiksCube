@@ -134,7 +134,7 @@ public class RubiksCubeController : MonoBehaviour
 
     void OnFaceGrabbed(RubiksCubeFace face)
     {
-        RotateFace(selectedFace, selectedPieces, 45);
+        RotateFace(face, face.Pieces, 45);
     }
 
     void OnFaceReleased(RubiksCubeFace face)

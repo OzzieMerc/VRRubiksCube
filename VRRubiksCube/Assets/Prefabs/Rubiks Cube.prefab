@@ -396,6 +396,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 290066658847108641}
   blockRenderer: {fileID: 3962789433678401931}
+  stickers:
+  - {fileID: 3962789434679425050}
+  - {fileID: 3962789433838328185}
+  - {fileID: 3962789434470966831}
 --- !u!1 &3962789433710104412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,6 +1104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 137117566848219966}
   blockRenderer: {fileID: 3962789434444943903}
+  stickers:
+  - {fileID: 3962789434140775030}
+  - {fileID: 3962789435496352336}
 --- !u!1 &3962789433891400412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,6 +1791,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 8239540555315712928}
   blockRenderer: {fileID: 3962789433995871841}
+  stickers:
+  - {fileID: 3962789434067219428}
+  - {fileID: 3962789434263547235}
 --- !u!1 &3962789434044399180
 GameObject:
   m_ObjectHideFlags: 0
@@ -2468,6 +2478,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 6896822359251661342}
   blockRenderer: {fileID: 3962789434720192381}
+  stickers:
+  - {fileID: 3962789433799223312}
+  - {fileID: 3962789435735411340}
+  - {fileID: 3962789433946472301}
 --- !u!1 &3962789434167935609
 GameObject:
   m_ObjectHideFlags: 0
@@ -2606,6 +2620,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 7166386617379491275}
   blockRenderer: {fileID: 3962789434044512620}
+  stickers:
+  - {fileID: 3962789434598003325}
+  - {fileID: 3962789434723354462}
 --- !u!1 &3962789434191635013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,6 +2795,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 3277270478921559449}
   blockRenderer: {fileID: 3962789435106897907}
+  stickers:
+  - {fileID: 3962789434727975453}
+  - {fileID: 3962789433658588066}
 --- !u!1 &3962789434245255351
 GameObject:
   m_ObjectHideFlags: 0
@@ -2838,6 +2858,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 4928607471762599301}
   blockRenderer: {fileID: 3962789434975022350}
+  stickers:
+  - {fileID: 3962789435540766300}
 --- !u!1 &3962789434263547236
 GameObject:
   m_ObjectHideFlags: 0
@@ -3389,6 +3411,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 5447218852411567087}
   blockRenderer: {fileID: 3962789435267082111}
+  stickers:
+  - {fileID: 3962789434690040885}
+  - {fileID: 3962789434314393444}
 --- !u!1 &3962789434409703831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3449,6 +3474,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 6940851087271210780}
   blockRenderer: {fileID: 3962789434932133702}
+  stickers:
+  - {fileID: 3962789433821218891}
+  - {fileID: 3962789435057373304}
 --- !u!1 &3962789434412900124
 GameObject:
   m_ObjectHideFlags: 0
@@ -4466,6 +4494,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 7277142703918186754}
   blockRenderer: {fileID: 3962789434690873288}
+  stickers:
+  - {fileID: 3962789434079656748}
 --- !u!1 &3962789434679425051
 GameObject:
   m_ObjectHideFlags: 0
@@ -4604,6 +4634,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 5084182358975296745}
   blockRenderer: {fileID: 3962789434852407846}
+  stickers:
+  - {fileID: 3962789435429716507}
+  - {fileID: 3962789435270829466}
 --- !u!1 &3962789434690040886
 GameObject:
   m_ObjectHideFlags: 0
@@ -4934,6 +4967,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 3071546790819492320}
   blockRenderer: {fileID: 3962789434812306421}
+  stickers:
+  - {fileID: 3962789435676948975}
+  - {fileID: 3962789433921060253}
 --- !u!1 &3962789434723354463
 GameObject:
   m_ObjectHideFlags: 0
@@ -5150,6 +5186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 2208538531952322240}
   blockRenderer: {fileID: 3962789434590367246}
+  stickers:
+  - {fileID: 3962789434115793474}
 --- !u!1 &3962789434768378736
 GameObject:
   m_ObjectHideFlags: 0
@@ -5288,6 +5326,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 1840576899280885642}
   blockRenderer: {fileID: 3962789434010294253}
+  stickers:
+  - {fileID: 3962789435757359242}
+  - {fileID: 3962789433710104411}
+  - {fileID: 3962789434201399907}
 --- !u!1 &3962789434793374394
 GameObject:
   m_ObjectHideFlags: 0
@@ -5426,6 +5468,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 8883995345669847466}
   blockRenderer: {fileID: 3962789435689613534}
+  stickers:
+  - {fileID: 3962789435643313395}
 --- !u!1 &3962789434812306424
 GameObject:
   m_ObjectHideFlags: 0
@@ -5564,6 +5608,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 7223181797108958730}
   blockRenderer: {fileID: 3962789434963996135}
+  stickers:
+  - {fileID: 3962789434044399179}
+  - {fileID: 3962789435262992109}
 --- !u!1 &3962789434852407849
 GameObject:
   m_ObjectHideFlags: 0
@@ -5780,6 +5827,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 3078042655148067427}
   blockRenderer: {fileID: 3962789433783866850}
+  stickers:
+  - {fileID: 3962789435365338945}
+  - {fileID: 3962789434071052095}
 --- !u!1 &3962789434881345337
 GameObject:
   m_ObjectHideFlags: 0
@@ -5918,6 +5968,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 7864417139927804726}
   blockRenderer: {fileID: 3962789434793374391}
+  stickers:
+  - {fileID: 3962789434302768983}
+  - {fileID: 3962789434355709663}
+  - {fileID: 3962789434663681886}
 --- !u!1 &3962789434897656585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6056,6 +6110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 7774909000423050422}
   blockRenderer: {fileID: 3962789434412900121}
+  stickers:
+  - {fileID: 3962789434659056142}
 --- !u!1 &3962789434932133705
 GameObject:
   m_ObjectHideFlags: 0
@@ -6684,6 +6740,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 8488729506131632040}
   blockRenderer: {fileID: 3962789434768378733}
+  stickers:
+  - {fileID: 3962789435736931226}
+  - {fileID: 3962789435749188118}
+  - {fileID: 3962789435075606913}
 --- !u!1 &3962789435106897910
 GameObject:
   m_ObjectHideFlags: 0
@@ -6933,6 +6993,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 3365656942957345762}
   blockRenderer: {fileID: 3962789435281939766}
+  stickers:
+  - {fileID: 3962789435373841074}
+  - {fileID: 3962789435048168825}
 --- !u!1 &3962789435180478175
 GameObject:
   m_ObjectHideFlags: 0
@@ -7026,6 +7089,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 3085185691813236311}
   blockRenderer: {fileID: 3962789434881345334}
+  stickers:
+  - {fileID: 3962789433855155276}
+  - {fileID: 3962789435147158640}
+  - {fileID: 3962789434852455788}
 --- !u!1 &3962789435253293351
 GameObject:
   m_ObjectHideFlags: 0
@@ -8037,6 +8104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 2398535262160533055}
   blockRenderer: {fileID: 3962789435417455476}
+  stickers:
+  - {fileID: 3962789435447761030}
 --- !u!1 &3962789435503492273
 GameObject:
   m_ObjectHideFlags: 0
@@ -8163,6 +8232,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 4441078376806405973}
   blockRenderer: {fileID: 3962789434542688608}
+  stickers:
+  - {fileID: 3962789435569418739}
+  - {fileID: 3962789434897656584}
+  - {fileID: 3962789434095001244}
 --- !u!1 &3962789435540766301
 GameObject:
   m_ObjectHideFlags: 0
@@ -8412,6 +8485,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 8119165173541826253}
   blockRenderer: {fileID: 3962789433783377636}
+  stickers:
+  - {fileID: 3962789434507088131}
+  - {fileID: 3962789434633305617}
+  - {fileID: 3962789434618714181}
 --- !u!1 &3962789435602601973
 GameObject:
   m_ObjectHideFlags: 0
@@ -8505,6 +8582,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: {fileID: 785799510878664925}
   blockRenderer: {fileID: 3962789434167935606}
+  stickers:
+  - {fileID: 3962789434014045190}
+  - {fileID: 3962789434343757487}
 --- !u!1 &3962789435643313396
 GameObject:
   m_ObjectHideFlags: 0
