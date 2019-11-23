@@ -2,36 +2,34 @@
 
 public class TwistInteraction : MonoBehaviour
 {
-    public delegate void OnTouchStart(VRController controller);
-    public event OnTouchStart onTouchStartEvent;
+    public delegate void InteractionEvent(VRController controller);
 
-    public delegate void OnTouchEnd(VRController controller);
-    public event OnTouchEnd onTouchEndEvent;
-
-    public delegate void OnGrabStart(VRController controller);
-    public event OnGrabStart onGrabStartEvent;
-
-    public delegate void OnGrabEnd(VRController controller);
-    public event OnGrabEnd onGrabEndEvent;
+    public event InteractionEvent onTouchStartEvent;
+    public event InteractionEvent onTouchEndEvent;
+    public event InteractionEvent onPreGrabStartEvent;
+    public event InteractionEvent onGrabStartEvent;
+    public event InteractionEvent onGrabEndEvent;
+    public event InteractionEvent onPostGrabEndEvent;
 
     VRController controllerWithFocus;
-    Quaternion grabRotationOffset;
+    Quaternion prevGrabRotation;
     bool grabbed;
 
     // Start is called before the first frame update
     void Start()
     {
         controllerWithFocus = null;
-        grabRotationOffset = Quaternion.identity;
+        prevGrabRotation = Quaternion.identity;
         grabbed = false;
     }
 
     void Update()
     {
         if (grabbed)
-        { 
-            // local to world space
-            //transform.rotation = controllerWithFocus.transform.rotation * grabRotationOffset;
+        {
+            float angle = Quaternion.Angle(controllerWithFocus.transform.rotation, prevGrabRotation);
+            transform.RotateAround(transform.position, transform.forward, angle);
+            prevGrabRotation = controllerWithFocus.transform.rotation;
         }
     }
 
@@ -66,6 +64,9 @@ public class TwistInteraction : MonoBehaviour
 
             if (onTouchEndEvent != null)
                 onTouchEndEvent(controller);
+            
+            if (grabbed)
+                Ungrab(controller);
         }
     }
 
@@ -76,23 +77,29 @@ public class TwistInteraction : MonoBehaviour
 
         if (gripped)
         {
-            // world to local space
-            grabRotationOffset = Quaternion.Inverse(controller.transform.rotation) * transform.rotation;
+            prevGrabRotation = controller.transform.rotation;
 
             grabbed = true;
 
-            //RotateFace()
-
+            if (onPreGrabStartEvent != null)
+                onPreGrabStartEvent(controller);
+                       
             if (onGrabStartEvent != null)
                 onGrabStartEvent(controller);
         }
         else
-        {
-            grabbed = false;
+            Ungrab(controller);
+    }
 
-            if (onGrabEndEvent != null)
-                onGrabEndEvent(controller);
-        }
+    void Ungrab(VRController controller)
+    {
+        grabbed = false;
+
+        if (onGrabEndEvent != null)
+            onGrabEndEvent(controller);
+
+        if (onPostGrabEndEvent != null)
+            onPostGrabEndEvent(controller);
     }
 
     //void RotateFace(RubiksCubeFace rotFace, RubiksCubePiece[] rotPieces, float degrees)

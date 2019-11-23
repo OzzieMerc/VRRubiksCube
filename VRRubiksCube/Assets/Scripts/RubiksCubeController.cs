@@ -3,6 +3,7 @@
 public class RubiksCubeController : MonoBehaviour
 {
     [SerializeField] TwistInteraction[] faceInteractions; // Each face of the cube that can be rotated
+    [SerializeField] Transform piecesParentTransform; // The transform with all the cube pieces as children
     [SerializeField] RubiksCubePiece[] pieces; // Each piece that makes up the cube
     [SerializeField] GrabberInteraction grabber;
     RubiksCubeFace selectedFace; // Currently selected face;
@@ -79,5 +80,22 @@ public class RubiksCubeController : MonoBehaviour
     {
         foreach (TwistInteraction interaction in faceInteractions)
             interaction.enabled = false;
+    }
+
+    public void RequestPieces(RubiksCubePiece[] piecesForFace, RubiksCubeFace face)
+    {
+        foreach (RubiksCubePiece piece in piecesForFace)
+            piece.transform.SetParent(face.transform);
+    }
+
+    public void ReturnPieces(RubiksCubePiece[] piecesFromFace, RubiksCubeFace face)
+    {
+        //Vector3 temp = face.transform.localEulerAngles;
+        //print(temp);
+        //temp.z = Mathf.Round(temp.z / 90) * 90;
+        //face.transform.localEulerAngles = temp;
+
+        foreach (RubiksCubePiece piece in piecesFromFace)
+            piece.transform.SetParent(piecesParentTransform);
     }
 }
