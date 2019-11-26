@@ -12,7 +12,7 @@ public class TwistInteraction : MonoBehaviour
     public event InteractionEvent onPostGrabEndEvent;
 
     VRController controllerWithFocus;
-    Quaternion prevGrabRotation;
+    Quaternion prevGrabRotation, startingRotation;
     bool grabbed;
 
     // Start is called before the first frame update
@@ -20,17 +20,14 @@ public class TwistInteraction : MonoBehaviour
     {
         controllerWithFocus = null;
         prevGrabRotation = Quaternion.identity;
+        startingRotation = transform.localRotation;
         grabbed = false;
     }
 
     void Update()
     {
         if (grabbed)
-        {
-            float angle = Quaternion.Angle(controllerWithFocus.transform.rotation, prevGrabRotation);
-            transform.RotateAround(transform.position, transform.forward, angle);
-            prevGrabRotation = controllerWithFocus.transform.rotation;
-        }
+            transform.localRotation = startingRotation * Quaternion.Euler(Vector3.Scale((controllerWithFocus.transform.rotation * prevGrabRotation).eulerAngles, Vector3.forward));
     }
 
     void OnTriggerEnter(Collider otherCollider)
@@ -64,7 +61,7 @@ public class TwistInteraction : MonoBehaviour
 
             if (onTouchEndEvent != null)
                 onTouchEndEvent(controller);
-            
+
             if (grabbed)
                 Ungrab(controller);
         }
@@ -77,13 +74,12 @@ public class TwistInteraction : MonoBehaviour
 
         if (gripped)
         {
-            prevGrabRotation = controller.transform.rotation;
-
+            prevGrabRotation = Quaternion.Inverse(controller.transform.rotation) * transform.rotation;
             grabbed = true;
 
             if (onPreGrabStartEvent != null)
                 onPreGrabStartEvent(controller);
-                       
+
             if (onGrabStartEvent != null)
                 onGrabStartEvent(controller);
         }
@@ -101,22 +97,6 @@ public class TwistInteraction : MonoBehaviour
         if (onPostGrabEndEvent != null)
             onPostGrabEndEvent(controller);
     }
-
-    //void RotateFace(RubiksCubeFace rotFace, RubiksCubePiece[] rotPieces, float degrees)
-    //{
-    //    Transform[] parents = new Transform[rotPieces.Length];
-
-    //    for (int i = 0; i < rotPieces.Length; i++)
-    //    {
-    //        parents[i] = rotPieces[i].transform.parent;
-    //        rotPieces[i].transform.SetParent(rotFace.transform);
-    //    }
-
-    //    rotFace.transform.RotateAround(transform.position, rotFace.transform.forward, degrees);
-
-    //    for (int i = 0; i < parents.Length; i++)
-    //        rotPieces[i].transform.SetParent(parents[i]);
-    //}
 
     bool HasFocus()
     {
